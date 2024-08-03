@@ -1,0 +1,45 @@
+.header{
+    display: flex;
+    padding: 32px 0 28px;
+    align-items: center;
+    font-family: "CabinetGrotesk";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+
+}
+
+.header__logo{
+    margin-right: 24px;
+}
+
+.header__date-and-location{
+    margin: 0;
+}
+
+.header__add-clothes-btn {
+    margin-left: auto;
+    border: none;
+    font-family: "CabinetGrotesk";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+
+}
+
+.header__add-clothes-btn:hover{
+    cursor: pointer;
+}
+
+.header__user-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 20px;
+}
+
+.header__username{
+    margin: 0;
+}
