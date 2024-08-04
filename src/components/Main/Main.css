@@ -19,6 +19,6 @@
     max-width: 1360px;
     display: grid;
     object-fit: contain;
-    grid-template-columns: repeat(4, 325px);
+    grid-template-columns: repeat(auto-fit, 325px);
     grid-gap: 20px;
 }

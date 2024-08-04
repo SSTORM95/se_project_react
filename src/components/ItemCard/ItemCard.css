@@ -33,3 +33,7 @@
     object-fit: cover;
     border-radius: 19px;
 }
+
+.card__image:hover{
+    cursor:pointer;
+}

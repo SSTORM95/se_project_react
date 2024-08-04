@@ -3,26 +3,44 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main'
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import ItemModal from '../ItemModal/ItemModal';
+import { getWeather, filterWeatherData } from '../../utils/weatherApi';
+import { coordinates, APIkey } from '../../utils/constants';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App () {
-    const [weatherData, setWeatherData] = useState({ type : "cold" });
-    const [activeModal, setActiveModal] = useState("")
+    const [weatherData, setWeatherData] = useState({ type : "" , temp: { F: "" }});
+    const [activeModal, setActiveModal] = useState("");
+    const [selectedCard, setSelectedCard] = useState({})
+
+    const handleCardClick = (card) => {
+        setActiveModal("preview")
+        setSelectedCard(card)
+    };
 
     const handleAddClick = ( ) => {
         setActiveModal("add-garment");
-    }
+    };
 
     const handleCloseClick = () => {
         setActiveModal("");
-    }
+    };
+
+    useEffect(() => {
+        getWeather(coordinates, APIkey)
+        .then((data) => {
+            const filteredData = filterWeatherData(data)
+            setWeatherData(filteredData)
+        })
+        .catch(console.error)
+    }, [])
 
     return (
     <div className="page">
         <div className='page__content'>
-            <Header handleAddClick={handleAddClick} />
-            <Main weatherData={weatherData}  />
+            <Header handleAddClick={handleAddClick} weatherData={weatherData}/>
+            <Main weatherData={weatherData} handleCardClick={handleCardClick} />
             <Footer />
         </div>
         <ModalWithForm title="New garment" buttonText="Add garment" activeModal={activeModal} handleCloseClick={handleCloseClick}>
@@ -47,6 +65,7 @@ function App () {
                         </label>
                     </fieldset>
         </ModalWithForm>
+        <ItemModal activeModal={activeModal} card={selectedCard} handleCloseClick={handleCloseClick}/>
     </div>
     );
 }
