@@ -1,5 +1,5 @@
 export const getWeather = ({ latitude, longitude }, APIkey) => {
-  return fetch(
+  const weatherApi = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   ).then((res) => {
     if (res.ok) {
@@ -8,22 +8,17 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
       return Promise.reject(`Error: ${res.status}`);
     }
   });
+  return weatherApi;
 };
 
 export const filterWeatherData = (data) => {
-  const result = {};
-  result.city = data.name;
-  result.temp = { F: data.main.temp };
-  result.type = getWeatherType(result.temp.F);
-  return result;
+  const main = data.main;
+  const temperature = main && main.temp;
+  const weather = {temperature: {F: Math.round(temperature), C: Math.round((temperature - 32) * 5/9)}, city: data.name}
+  return weather;
 };
 
-const getWeatherType = (temperature) => {
-  if (temperature >= 86) {
-    return "hot";
-  } else if (temperature >= 66 && temperature < 86) {
-    return "warm";
-  } else {
-    return "cold";
-  }
-};
+
+
+// weather.temperature.F = data.main.temp);
+// weather.temperature.C = Math.round((data.main.temp - 32) * 5/9)};
