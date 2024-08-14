@@ -1,5 +1,7 @@
 .footer{
     max-width: 1358px;
+    
+   
 }
 
 .footer__text{
@@ -10,4 +12,5 @@
     text-align: left;
     display: flex;
     justify-content: space-between;
+  
 }
