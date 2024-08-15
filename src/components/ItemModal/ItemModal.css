@@ -1,28 +1,45 @@
-.modal__content_type_image{
-    padding: 0 0 32px ;
+.modal__content_type_image {
+  padding: 0 0 32px;
 }
 
-.modal__image{
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    width: 496px;
-    height: 498px;
+.modal__image {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 496px;
+  height: 498px;
 }
 
-.modal__close-preview{
-    top: 24px;
-    right: 24px;
+.modal__close-preview {
+  top: 24px;
+  right: 24px;
 }
 
-.modal__footer{
-    margin: 20px 0 0; 
-    padding-left: 20px;
+.modal__footer {
+  margin: 20px 0 0;
+  padding-left: 20px;
+  position: relative;
+  font-family: "CabinetGrotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
 }
 
-.modal__caption{
-    margin: 0 0 12px;
+.modal__delete-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  color: #FF4D00;
+  padding: 0 32px 0 0;
+  cursor: pointer;
 }
 
-.modal__weather{
-    margin: 0
+.modal__caption {
+  margin: 0 0 12px;
+}
+
+.modal__weather {
+  margin: 0;
 }
