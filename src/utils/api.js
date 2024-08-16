@@ -22,8 +22,8 @@ function addNewItem({name, imageUrl, weather}) {
   });
 }
 
-function deleteItem(item) {
-  return fetch(`${baseUrl}/items/${item._id}`, {
+function deleteItem(id) {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

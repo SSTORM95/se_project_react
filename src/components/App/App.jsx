@@ -12,7 +12,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import { Routes, Route } from "react-router-dom";
 
 import { useEffect, useState } from "react";
-import { addNewItem, getItems } from "../../utils/api";
+import { addNewItem, deleteItem, getItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState(0);
@@ -46,6 +46,15 @@ function App() {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
+
+  function handleDeleteItem(key) {
+    deleteItem(key)
+      .then(() => {
+        setClothingItems((prev) => prev.filter((item) => item._id !== key));
+        setActiveModal("");
+      })
+      .catch(console.error);
+  }
 
  
 
@@ -110,6 +119,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           handleCloseClick={handleCloseClick}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
