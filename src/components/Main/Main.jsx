@@ -11,13 +11,22 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
   const temp = weatherData?.temperature?.[currentTemperatureUnit] || 90
 
   const getWeatherType = useMemo(() => {
-    
-    if (temp >= 86) {
-      return "hot";
-    } else if (temp >= 66 && temp < 86) {
-      return "warm";
-    } else {
-      return "cold";
+    if (currentTemperatureUnit === 'F') {
+      if (temp >= 86) {
+        return 'hot';
+      } else if (temp >= 66 && temp < 86) {
+        return 'warm';
+      } else {
+        return 'cold';
+      }
+    } else if (currentTemperatureUnit === 'C') {
+      if (temp >= 30) {
+        return 'hot';
+      } else if (temp >= 19 && temp < 30) {
+        return 'warm';
+      } else {
+        return 'cold';
+      }
     }
   }, [weatherData]);
 

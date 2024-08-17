@@ -6,7 +6,7 @@ function ModalWithForm({
   buttonText,
   title,
   isOpen,
-  handleCloseClick,
+  handleModalClose,
   onSubmit
 }) {
   return (
@@ -16,7 +16,7 @@ function ModalWithForm({
         <button
           type="button"
           className="modal__close"
-          onClick={handleCloseClick}
+          onClick={handleModalClose}
         >
           <img src={close} alt="close button" />
         </button>

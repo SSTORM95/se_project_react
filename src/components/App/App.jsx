@@ -30,16 +30,17 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const handleCloseClick = () => {
+  const handleModalClose = () => {
     setActiveModal("");
   };
 
   const onAddItem = (values) => {
-   
     addNewItem(values).then((data) => {
       setClothingItems([data, ...clothingItems]);
-    })
-    handleCloseClick();
+      handleModalClose();
+    }).catch((err) => {
+      console.error(`Unable to process request, Error: ${err}`);
+    });
   };
 
   const handleToggleSwitchChange = () => {
@@ -47,11 +48,11 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  function handleDeleteItem(key) {
-    deleteItem(key)
+  function handleDeleteItem(card) {
+    deleteItem(card)
       .then(() => {
-        setClothingItems((prev) => prev.filter((item) => item._id !== key));
-        setActiveModal("");
+        setClothingItems((prev) => prev.filter((item) => item._id !== card));
+        handleModalClose();
       })
       .catch(console.error);
   }
@@ -110,7 +111,7 @@ function App() {
         </div>
         {activeModal === "add-garment" && (
           <AddItemModal
-            handleCloseClick={handleCloseClick}
+            handleModalClose={handleModalClose}
             isOpen={activeModal === "add-garment"}
             onAddItem={onAddItem}
           />
@@ -118,7 +119,7 @@ function App() {
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
-          handleCloseClick={handleCloseClick}
+          handleModalClose={handleModalClose}
           handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
