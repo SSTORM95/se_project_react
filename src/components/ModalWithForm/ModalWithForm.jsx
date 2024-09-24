@@ -7,7 +7,9 @@ function ModalWithForm({
   title,
   isOpen,
   handleModalClose,
-  onSubmit
+  onSubmit,
+  redirectText,
+  redirectTextClick,
 }) {
   return (
     <div className={`modal ${isOpen && "modal_opened"}`}>
@@ -22,9 +24,18 @@ function ModalWithForm({
         </button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
+          <div className="modal__buttons">
           <button className="modal__submit" type="submit">
             {buttonText}
           </button>
+          <button
+            type="button"
+            className="modal__btn-redirect"
+            onClick={redirectTextClick}
+          >
+            {redirectText}
+          </button>
+          </div>
         </form>
       </div>
     </div>
