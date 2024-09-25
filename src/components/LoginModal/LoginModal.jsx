@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({handleModalClose, isOpen, setActiveModal }) => {
+const LoginModal = ({handleModalClose, isOpen, setActiveModal, handleLogin }) => {
 
     const [data, setData] = useState({
         email: "",
@@ -36,6 +37,7 @@ const LoginModal = ({handleModalClose, isOpen, setActiveModal }) => {
       onSubmit={handleSubmit}
       redirectText={"or Register"}
       redirectTextClick={handleModalChange}
+      handleLogin={handleLogin}
     >
      <label htmlFor="email" className="modal__label">Email
         <input

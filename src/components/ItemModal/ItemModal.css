@@ -36,6 +36,14 @@
   cursor: pointer;
 }
 
+.modal__delete-button_visible {
+  visibility: visible;
+}
+
+.modal__delete-button_hidden {
+  visibility: hidden;
+}
+
 .modal__caption {
   margin: 0 0 12px;
 }

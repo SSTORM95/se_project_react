@@ -83,7 +83,7 @@ const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActive
           value={data.confirmPassword}
           onChange={handleChange}
           required
-          placeholder="Password"
+          placeholder="Avatar URL"
           className="modal__input"
         />
         </label>
