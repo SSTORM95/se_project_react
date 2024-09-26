@@ -80,7 +80,7 @@ const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActive
           id="avatar-URL"
           name="avatar"
           type="avatar-URL"
-          value={data.confirmPassword}
+          value={data.avatar}
           onChange={handleChange}
           required
           placeholder="Avatar URL"

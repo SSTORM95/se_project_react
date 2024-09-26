@@ -1,18 +1,39 @@
-.sidebar{
-    display: flex;
-    gap: 16px;
-    ;
-   
+.sidebar {
+  font-family: "CabinetGrotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
 }
 
-.sidebar__avatar{
-    width: 56px;
-    height: 56px;
-    margin-top: 19px;
+.sidebar__user {
+  display: flex;
+  gap: 16px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  margin-top: 19px;
 }
 
 .sidebar__username {
- margin: 0;
- margin-top: 34px;
+  margin: 0;
+  margin-top: 34px;
   width: 157px;
+}
+
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  margin: 24px 0 0 0;
+  gap: 8px;
+}
+
+.edit__profile-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
 }

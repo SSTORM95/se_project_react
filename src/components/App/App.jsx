@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -10,13 +12,12 @@ import { coordinates, APIkey } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../Contexts/CurrentTemperatureUnitContext";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext ";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { Routes, Route, useNavigate } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes";
-import { registerUser, signInUser, isValidToken } from "../../utils/auth";
-import { useEffect, useState } from "react";
+import { registerUser, signInUser, isValidToken, updateUser } from "../../utils/auth";
 import { addNewItem, deleteItem, getItems } from "../../utils/api";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,6 +48,10 @@ function App() {
   const handleLoginUser = () => {
     setActiveModal("login");
   };
+
+  const handleEditProfilePopup = () => {
+    setActiveModal("edit");
+  }
 
   const handleRegisterUser = () => {
     setActiveModal("register");
@@ -82,7 +87,7 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res.data);
-        console.log(res);
+       
         navigate("/profile");
         handleModalClose();
       })
@@ -110,6 +115,19 @@ function App() {
         console.error("Invalid data entered", err);
       });
   };
+
+  const handleEditProfile = ({ name, avatar}) => {
+    updateUser({name, avatar})
+    .then((res) => {
+      console.log(res)
+      setCurrentUser(res)
+      handleModalClose()
+    }).catch((res) => {
+      console.error(res);
+    });
+};
+
+
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -139,7 +157,7 @@ function App() {
       .then((res) => {
         console.log(res);
         setCurrentUser(res);
-        setIsloggedIn(true);
+        setIsLoggedIn(true);
       })
       .catch(console.error);
   }, []);
@@ -176,6 +194,7 @@ function App() {
                       onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
+                      handleEditProfileModal={handleEditProfilePopup}
                     />
                   </ProtectedRoute>
                 }
@@ -211,6 +230,11 @@ function App() {
             card={selectedCard}
             handleModalClose={handleModalClose}
             handleDeleteItem={handleDeleteItem}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "edit"}
+            handleModalClose={handleModalClose}
+            handleEditProfile={handleEditProfile}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

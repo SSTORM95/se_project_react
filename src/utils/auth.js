@@ -1,3 +1,5 @@
+import { getToken } from "./token";
+
 const baseUrl = "http://localhost:3001";
 
 const handleResponse = (res) => {
@@ -40,4 +42,18 @@ export function isValidToken(token) {
       return data;
     })
     .then(handleResponse);
+}
+
+export function updateUser({ name, avatar }) {
+  const token = getToken();
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+
+    body: JSON.stringify({ name, avatar }),
+  }).then(handleResponse);
 }
