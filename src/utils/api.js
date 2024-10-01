@@ -13,7 +13,7 @@ function checkResponse(res) {
 }
 
 function getItems() {
-  return request(`${baseUrl}/items`);
+  return request(`${baseUrl}/items`)
 }
 
 function addNewItem({ name, imageUrl, weather }, token) {
@@ -40,4 +40,26 @@ function deleteItem(id, token) {
   });
 }
 
-export { getItems, addNewItem, deleteItem };
+function addCardLike(id) {
+  const token = getToken();
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+function removeCardLike(id) {
+  const token = getToken();
+  return request(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export { getItems, addNewItem, deleteItem, addCardLike, removeCardLike };

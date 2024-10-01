@@ -16,7 +16,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes";
 import { registerUser, signInUser, isValidToken, updateUser } from "../../utils/auth";
-import { addNewItem, deleteItem, getItems } from "../../utils/api";
+import { addNewItem, deleteItem, getItems, removeCardLike, addCardLike } from "../../utils/api";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
@@ -58,7 +58,9 @@ function App() {
   };
 
   const onAddItem = (values) => {
-    addNewItem(values)
+    const token = getToken();
+
+    addNewItem(values, token)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         handleModalClose();
@@ -74,7 +76,10 @@ function App() {
   };
 
   function handleDeleteItem(card) {
-    deleteItem(card)
+    const token = getToken();
+
+
+    deleteItem(card, token)
       .then(() => {
         setClothingItems((prev) => prev.filter((item) => item._id !== card));
         handleModalClose();
@@ -96,8 +101,8 @@ function App() {
       });
   };
 
-  const handleLogin = ({ username, password }) => {
-    if (!username || !password) {
+  const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
       return;
     }
     signInUser({ email, password })
@@ -127,7 +132,26 @@ function App() {
     });
 };
 
-
+const handleCardLike = ({ id, isLiked }) => {
+  const token = localStorage.getItem("jwt");
+  if (!isLiked) {
+    addCardLike(id, token)
+      .then((updatedCard) => {
+        setClothingItems((cards) => 
+          cards.map((item) => (item._id === id ? updatedCard : item))
+        );
+      })
+      .catch((err) => console.log(err));
+  } else {
+    removeCardLike(id, token)
+      .then((updatedCard) => {
+        setClothingItems((cards) => 
+          cards.map((item) => (item._id === id ? updatedCard : item))
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+};
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -183,6 +207,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -195,6 +220,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
                       handleEditProfileModal={handleEditProfilePopup}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

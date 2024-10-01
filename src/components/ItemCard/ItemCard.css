@@ -7,13 +7,20 @@
     width: 325px;
     height: 328px;
 }
-
-.card__name{
-    position: absolute;
-    margin: 0;
+.card__header{
+    position:absolute;
     top: 15px;
+    display: flex;
+    align-items: center;
     left: 125px;
     right: 125px;
+    gap: 10px;
+}
+.card__name{
+    
+    margin: 0;
+    top: 15px;
+   
     border-radius: 4px;
     background-position: center;
     background-color: #fff;
@@ -27,6 +34,11 @@
     justify-content: center;
 }
 
+.card__like-btn{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
 .card__image{
     border: 1px solid #0000004D;
     
