@@ -1,18 +1,16 @@
 
 WTWR (What to Wear?)
 About the project
-The idea of the application is pretty simple - we make a call to an API, which then responds with the daily weather forecast. We collect the weather data, process it, and then based on the forecast, we recommend suitable clothing to the user.
+Front end side of the WTWR project using react and vite, has logging in and register features, as well as the authorization for them, implements the use of token for a better user experience while not having to log in everytime.
 
-Links
-Figma Design
+# Tecnologies used
+-React
+-JWT Token
+-Context
+-Routes
+-Api
+- and more
 
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Link to Back end of project
+https://github.com/SSTORM95/se_project_express
 
