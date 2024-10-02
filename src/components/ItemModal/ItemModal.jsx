@@ -14,7 +14,7 @@ function ItemModal({ activeModal, card, handleModalClose, handleDeleteItem }) {
   // );
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
-      <div className="modal__content modal__content_type_image">
+      <div className="modal__content_type_image">
         <button
           onClick={handleModalClose}
           className="modal__close modal__close-preview"

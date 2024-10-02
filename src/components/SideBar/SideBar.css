@@ -37,3 +37,11 @@
   padding: 0;
   text-align: left;
 }
+
+.logout__user-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}

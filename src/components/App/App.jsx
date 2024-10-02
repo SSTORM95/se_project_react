@@ -121,6 +121,14 @@ function App() {
       });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/");
+  };
+
+
   const handleEditProfile = ({ name, avatar}) => {
     updateUser({name, avatar})
     .then((res) => {
@@ -221,6 +229,7 @@ const handleCardLike = ({ id, isLiked }) => {
                       clothingItems={clothingItems}
                       handleEditProfileModal={handleEditProfilePopup}
                       onCardLike={handleCardLike}
+                      handleLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }

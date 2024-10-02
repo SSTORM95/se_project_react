@@ -7,12 +7,15 @@ function Profile({
   handleAddClick,
   clothingItems,
   handleEditProfileModal,
-  onCardLike
+  onCardLike,
+  handleLogout
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar handleEditProfileModal={handleEditProfileModal} />
+        <SideBar 
+        handleEditProfileModal={handleEditProfileModal}
+        handleLogout={handleLogout} />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection
