@@ -1,33 +1,37 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActiveModal }) => {
+const RegisterModal = ({
+  handleModalClose,
+  isOpen,
+  handleRegistration,
+  setActiveModal,
+}) => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    name: "",
+    avatar: "",
+  });
 
-    const [data, setData] = useState({
-        email: "",
-        password: "",
-        name: "",
-        avatar: "",
-      });
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-      };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        handleRegistration(data);
-      };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleRegistration(data);
+  };
 
-      const handleModalChange = (e) => {
-        e.preventDefault();
-        handleModalClose();
-        setActiveModal("login");
-      };
+  const handleModalChange = (e) => {
+    e.preventDefault();
+    handleModalClose();
+    setActiveModal("login");
+  };
 
   return (
     <ModalWithForm
@@ -39,7 +43,8 @@ const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActive
       redirectText={"or Log in"}
       redirectTextClick={handleModalChange}
     >
-     <label htmlFor="email" className="modal__label">Email*
+      <label htmlFor="email" className="modal__label">
+        Email*
         <input
           id="email"
           name="email"
@@ -50,10 +55,11 @@ const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActive
           required
           className="modal__input"
         />
-        </label>
-        <label htmlFor="password" className="modal__label">Password*
+      </label>
+      <label htmlFor="password" className="modal__label">
+        Password*
         <input
-          id="password"
+          id="register-password"
           name="password"
           type="password"
           placeholder="Password"
@@ -61,9 +67,11 @@ const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActive
           onChange={handleChange}
           required
           className="modal__input"
+          autoComplete="true"
         />
-        </label>
-        <label htmlFor="name" className="modal__label">Name*
+      </label>
+      <label htmlFor="name" className="modal__label">
+        Name*
         <input
           id="name"
           name="name"
@@ -74,8 +82,9 @@ const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActive
           onChange={handleChange}
           className="modal__input"
         />
-        </label>
-        <label htmlFor="avatar-URL" className="modal__label">Avatar URL*
+      </label>
+      <label htmlFor="avatar-URL" className="modal__label">
+        Avatar URL*
         <input
           id="avatar-URL"
           name="avatar"
@@ -86,7 +95,7 @@ const RegisterModal = ({ handleModalClose, isOpen, handleRegistration, setActive
           placeholder="Avatar URL"
           className="modal__input"
         />
-        </label>
+      </label>
     </ModalWithForm>
   );
 };

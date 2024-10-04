@@ -1,34 +1,38 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({handleModalClose, isOpen, setActiveModal, handleLogin }) => {
+const LoginModal = ({
+  handleModalClose,
+  isOpen,
+  setActiveModal,
+  handleLogin,
+}) => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
 
-    const [data, setData] = useState({
-        email: "",
-        password: "",
-      });
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-      };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        handleLogin(data);
-      };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(data);
+  };
 
-      const handleModalChange = (e) => {
-        e.preventDefault();
-        handleModalClose();
-        setActiveModal("register");
-      };
-      
-      return(
-        <ModalWithForm
+  const handleModalChange = (e) => {
+    e.preventDefault();
+    handleModalClose();
+    setActiveModal("register");
+  };
+
+  return (
+    <ModalWithForm
       title="Log in"
       buttonText="Next"
       isOpen={isOpen}
@@ -38,9 +42,10 @@ const LoginModal = ({handleModalClose, isOpen, setActiveModal, handleLogin }) =>
       redirectTextClick={handleModalChange}
       handleLogin={handleLogin}
     >
-     <label htmlFor="email" className="modal__label">Email
+      <label htmlFor="email" className="modal__label">
+        Email
         <input
-          id="email"
+          id="login-email"
           name="email"
           type="email"
           placeholder="Email"
@@ -48,11 +53,13 @@ const LoginModal = ({handleModalClose, isOpen, setActiveModal, handleLogin }) =>
           onChange={handleChange}
           required
           className="modal__input"
+          autoComplete="true"
         />
-        </label>
-        <label htmlFor="password" className="modal__label">Password
+      </label>
+      <label htmlFor="password" className="modal__label">
+        Password
         <input
-          id="password"
+          id="current-password"
           name="password"
           type="password"
           placeholder="Password"
@@ -60,10 +67,11 @@ const LoginModal = ({handleModalClose, isOpen, setActiveModal, handleLogin }) =>
           onChange={handleChange}
           required
           className="modal__input"
+          autoComplete="true"
         />
-        </label>
+      </label>
     </ModalWithForm>
-      )
-}
+  );
+};
 
 export default LoginModal;

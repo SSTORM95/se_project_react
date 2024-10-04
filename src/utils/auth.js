@@ -1,14 +1,9 @@
 import { getToken } from "./token";
+import { checkResponse } from "./api";
 
 const baseUrl = "http://localhost:3001";
 
-const handleResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
 
-  return Promise.reject(`Error: ${res.status}`);
-};
 
 export function registerUser({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
@@ -17,7 +12,7 @@ export function registerUser({ name, avatar, email, password }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 export function signInUser({ email, password }) {
@@ -27,7 +22,7 @@ export function signInUser({ email, password }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 export function isValidToken(token) {
@@ -41,7 +36,7 @@ export function isValidToken(token) {
     .then((data) => {
       return data;
     })
-    .then(handleResponse);
+    .then(checkResponse);
 }
 
 export function updateUser({ name, avatar }) {
@@ -55,5 +50,5 @@ export function updateUser({ name, avatar }) {
     },
 
     body: JSON.stringify({ name, avatar }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
