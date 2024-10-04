@@ -6,7 +6,6 @@ import close from "../../images/Close.svg";
 function ItemModal({ activeModal, card, handleModalClose, handleDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
 
-  
   // handed function on the project 14 steps didnt work for my app, applied on the class name of the button made it worked
   // const isOwn = card.owner === currentUser._id;
   // const itemDeleteButtonClassName = (
@@ -27,7 +26,9 @@ function ItemModal({ activeModal, card, handleModalClose, handleDeleteItem }) {
           <p className="modal__weather">Weather: {card.weather}</p>
           <button
             className={`modal__delete-button ${
-              card.owner === currentUser?._id ? "" : "modal__delete-button_hidden"
+              card.owner === currentUser?._id
+                ? ""
+                : "modal__delete-button_hidden"
             }`}
             onClick={() => {
               handleDeleteItem(card._id);

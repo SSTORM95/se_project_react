@@ -8,14 +8,15 @@ function Profile({
   clothingItems,
   handleEditProfileModal,
   onCardLike,
-  handleLogout
+  handleLogout,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar 
-        handleEditProfileModal={handleEditProfileModal}
-        handleLogout={handleLogout} />
+        <SideBar
+          handleEditProfileModal={handleEditProfileModal}
+          handleLogout={handleLogout}
+        />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection

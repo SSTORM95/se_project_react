@@ -56,7 +56,7 @@ const RegisterModal = ({
           className="modal__input"
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password*
         <input
           id="register-password"
