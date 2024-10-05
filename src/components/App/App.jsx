@@ -15,8 +15,19 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes";
-import { registerUser, signInUser, isValidToken, updateUser } from "../../utils/auth";
-import { addNewItem, deleteItem, getItems, removeCardLike, addCardLike } from "../../utils/api";
+import {
+  registerUser,
+  signInUser,
+  isValidToken,
+  updateUser,
+} from "../../utils/auth";
+import {
+  addNewItem,
+  deleteItem,
+  getItems,
+  removeCardLike,
+  addCardLike,
+} from "../../utils/api";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
@@ -51,7 +62,7 @@ function App() {
 
   const handleEditProfilePopup = () => {
     setActiveModal("edit");
-  }
+  };
 
   const handleRegisterUser = () => {
     setActiveModal("register");
@@ -78,7 +89,6 @@ function App() {
   function handleDeleteItem(card) {
     const token = getToken();
 
-
     deleteItem(card, token)
       .then(() => {
         setClothingItems((prev) => prev.filter((item) => item._id !== card));
@@ -92,7 +102,7 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res.data);
-       
+
         navigate("/profile");
         handleModalClose();
       })
@@ -128,38 +138,38 @@ function App() {
     navigate("/");
   };
 
-
-  const handleEditProfile = ({ name, avatar}) => {
-    updateUser({name, avatar})
-    .then((res) => {
-      console.log(res)
-      setCurrentUser(res)
-      handleModalClose()
-    }).catch((res) => {
-      console.error(res);
-    });
-};
-
-const handleCardLike = ({ id, isLiked }) => {
-  const token = localStorage.getItem("jwt");
-  if (!isLiked) {
-    addCardLike(id, token)
-      .then((updatedCard) => {
-        setClothingItems((cards) => 
-          cards.map((item) => (item._id === id ? updatedCard : item))
-        );
+  const handleEditProfile = ({ name, avatar }) => {
+    updateUser({ name, avatar })
+      .then((res) => {
+        console.log(res);
+        setCurrentUser(res);
+        handleModalClose();
       })
-      .catch((err) => console.log(err));
-  } else {
-    removeCardLike(id, token)
-      .then((updatedCard) => {
-        setClothingItems((cards) => 
-          cards.map((item) => (item._id === id ? updatedCard : item))
-        );
-      })
-      .catch((err) => console.log(err));
-  }
-};
+      .catch((res) => {
+        console.error(res);
+      });
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    if (!isLiked) {
+      addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -201,12 +211,13 @@ const handleCardLike = ({ id, isLiked }) => {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="page__content">
-            <Header 
-            handleAddClick={handleAddClick} 
-            weatherData={weatherData} 
-            handleRegisterUser={handleRegisterUser}
-            handleLoginUser={handleLoginUser}
-            isLoggedIn={isLoggedIn}/>
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              handleRegisterUser={handleRegisterUser}
+              handleLoginUser={handleLoginUser}
+              isLoggedIn={isLoggedIn}
+            />
             <Routes>
               <Route
                 path="/"
@@ -257,7 +268,6 @@ const handleCardLike = ({ id, isLiked }) => {
             handleModalClose={handleModalClose}
             handleLogin={handleLogin}
             setActiveModal={setActiveModal}
-          
           />
 
           <ItemModal

@@ -35,7 +35,7 @@ const EditProfileModal = ({ handleModalClose, isOpen, handleEditProfile }) => {
       onSubmit={handleSubmit}
       handleEditProfile={handleEditProfile}
     >
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name*
         <input
           id="edit-name"
@@ -48,7 +48,7 @@ const EditProfileModal = ({ handleModalClose, isOpen, handleEditProfile }) => {
           className="modal__input"
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label className="modal__label">
         Avatar*
         <input
           id="edit-avatar"

@@ -43,7 +43,7 @@ const RegisterModal = ({
       redirectText={"or Log in"}
       redirectTextClick={handleModalChange}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         Email*
         <input
           id="email"
@@ -56,7 +56,7 @@ const RegisterModal = ({
           className="modal__input"
         />
       </label>
-      <label htmlFor="register-password" className="modal__label">
+      <label className="modal__label">
         Password*
         <input
           id="register-password"
@@ -70,7 +70,7 @@ const RegisterModal = ({
           autoComplete="true"
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name*
         <input
           id="name"
@@ -83,7 +83,7 @@ const RegisterModal = ({
           className="modal__input"
         />
       </label>
-      <label htmlFor="avatar-URL" className="modal__label">
+      <label className="modal__label">
         Avatar URL*
         <input
           id="avatar-URL"

@@ -42,7 +42,7 @@ const LoginModal = ({
       redirectTextClick={handleModalChange}
       handleLogin={handleLogin}
     >
-      <label htmlFor="login-email" className="modal__label">
+      <label className="modal__label">
         Email
         <input
           id="login-email"
@@ -56,7 +56,7 @@ const LoginModal = ({
           autoComplete="true"
         />
       </label>
-      <label htmlFor="current-password" className="modal__label">
+      <label className="modal__label">
         Password
         <input
           id="current-password"
