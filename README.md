@@ -15,3 +15,11 @@ Front end side of the WTWR project using react and vite, has logging in and regi
 # Link to Back end of project
 
 https://github.com/SSTORM95/se_project_express
+
+
+# Link for deployed project
+
+https://wtwrsida.twilightparadox.com
+https://www.wtwrsida.twilightparadox.com
+https://api.wtwrsida.twilightparadox.com
+
